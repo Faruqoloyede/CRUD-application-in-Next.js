@@ -15,7 +15,7 @@ const page = ({type}: {type: FormType}) => {
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string | null>('');
     const router = useRouter();
-
+ 
     const handleSignup = async()=>{
         if (!name.trim()) {
             setError("Name is required.");

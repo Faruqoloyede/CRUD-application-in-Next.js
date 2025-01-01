@@ -2,21 +2,38 @@
 import React from 'react'
 import { useState } from 'react';
 import UseAuth from '../../hooks/UseAuth';
+import { database, database_id, collection_id, ID } from '../appwrite';
 
 const page = () => {
     const [name, setName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
-    const [number, setNumber] = useState<string>();
+    const [number, setNumber] = useState<string>('');
     const {user, loading} = UseAuth();
+
+    const AddPost = async ()=>{
+        try{
+            await database.createDocument(database_id, collection_id, ID.unique(),{
+                name,
+                email,
+                number
+            })
+            alert('user added successfully');
+        }catch(err: any){
+            alert(err.message);
+        }
+    }
     
     const handleSubmit =  (e: React.FormEvent)=>{
         e.preventDefault();
+        AddPost();
     }
 
     if(loading) <h1>loading....</h1>
     if(!user){
         return null
     }
+
+
 
   return (
     <div className='max-w-md mx-auto mt-10 border border-gray-300 rounded-lg shadow-md px-4 py-6'>
@@ -32,7 +49,7 @@ const page = () => {
         </div>
         <div className='mb-4 flex flex-col gap-3'>
             <label htmlFor="number" className='block text-[20px]'>Phone number</label>
-            <input type="password" name='password' value={number} placeholder='number' className='w-full h-[3rem] border border-gray-300 p-2 rounded-md focus:outline-none' onChange={(e)=> setNumber(e.target.value)} />
+            <input type="number" name='number' value={number} placeholder='number' className='w-full h-[3rem] border border-gray-300 p-2 rounded-md focus:outline-none' onChange={(e)=> setNumber(e.target.value)} />
         </div>
         <button className='bg-blue-500 w-full h-[3rem] rounded-md text-white text-[18px]'>Add user</button>
     </form>

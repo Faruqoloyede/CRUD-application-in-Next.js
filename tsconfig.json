@@ -34,7 +34,7 @@
     "next-env.d.ts",
     "processEnv.d.ts",
     ".next/types/**/*.ts"
-  ],
+, "app/appwrite.ts"  ],
   "exclude": [
     "node_modules"
   ]

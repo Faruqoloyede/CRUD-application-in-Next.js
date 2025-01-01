@@ -37,7 +37,7 @@ const page = ({type}: {type: FormType}) => {
         try{
             await account.createEmailPasswordSession(email, password);
             alert('successfully logged in');
-            router.push('/Adduser');
+            router.push('/');
         }catch(err: any){
             setError(err.message)
         }

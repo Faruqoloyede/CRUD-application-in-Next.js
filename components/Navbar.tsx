@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import UseAuth from '@/hooks/UseAuth'
-import { account } from '@/app/appwrite'
+import { account } from '../app/appwrite'
 import { useRouter } from 'next/navigation'
 
 const Navbar = () => {
